@@ -1,26 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Jumbotron from "./components/Jumbotron";
+import ImageCard from "./components/ImageCard";
+import Wrapper from "./components/Wrapper"
+// import logo from './logo.svg';
+import images from "./images.json"
 import './App.css';
 
 class App extends Component {
+  state = {
+    images
+  };
+
+  removeImage = id => {
+    // Filter this.state.friends for friends with an id not equal to the id being removed
+    const images = this.state.images.filter(image => image.id !== id);
+    // Set this.state.friends equal to the new friends array
+    this.setState({ images });
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Wrapper>
+        <Header />
+        <Jumbotron />
+        {this.state.images.map(image => (
+          <ImageCard
+            removeFriend={this.removeFriend}
+            id={image.id}
+            key={image.id}
+            name={image.name}
+            image={image.image}
+          />
+        ))}
+        <Footer />
+      </Wrapper>
     );
   }
 }
