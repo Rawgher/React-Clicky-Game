@@ -4,8 +4,8 @@ import "./Wrapper.css";
 const Header = () => <div>
 
 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <p className="navbar-brand float-left">Clicky Game</p>
-  <div className="collapse navbar-collapse float-right" id="navbarNavAltMarkup">
+  <p className="navbar-brand">Clicky Game</p>
+  <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div className="navbar-nav">
       <p className="nav-item nav-link">Score: </p>
       <p className="nav-item nav-link"> 5 </p>
