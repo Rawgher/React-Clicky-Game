@@ -1,6 +1,11 @@
 import React from "react";
 import "./Wrapper.css";
 
-const Jumbotron = () => <div>This is my big ass jumbotron fam</div>;
+const Jumbotron = () => <div className="jumbotron jumbotron-fluid">
+<div className="container">
+  <h1 className="display-4">Clicky Game</h1>
+  <p className="lead">Click an image </p>
+</div>
+</div>
 
 export default Jumbotron;
