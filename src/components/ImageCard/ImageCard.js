@@ -1,10 +1,13 @@
 import React from "react";
-import "./FriendCard.css";
+import "./ImageCard.css";
 
 const ImageCard = props => (
-
+<div className="card-container">
   <div className="card float-left">
-  <img className="card-img-top" src={props.image} alt={props.name} />
+  <span onClick={() => props.selectImage(props.id)}>
+  <img className="card-img-top content img-container" src={props.image} alt={props.name} />
+  </span>
+  </div>
   </div>
 );
 

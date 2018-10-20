@@ -4,30 +4,70 @@ import Header from "./components/Header";
 import Jumbotron from "./components/Jumbotron";
 import ImageCard from "./components/ImageCard";
 import Wrapper from "./components/Wrapper"
-// import logo from './logo.svg';
 import images from "./images.json"
 import './App.css';
 
 class App extends Component {
   state = {
-    images
+    images,
+    chosenImageArray: [],
+    highScore: 0,
+    userScore: 0,
+    message: ""
   };
 
-  removeImage = id => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    const images = this.state.images.filter(image => image.id !== id);
-    // Set this.state.friends equal to the new friends array
-    this.setState({ images });
+  selectImage = id => {
+
+    this.setState({ images: this.shuffle(this.state.images) });
+
+    if (this.state.chosenImageArray.indexOf(id) === -1) {
+      
+      this.state.chosenImageArray.push(id)
+
+      this.setState({
+        chosenImageArray: this.state.chosenImageArray,
+        userScore: this.state.userScore + 1,
+        message: "Good choice!"
+      })
+    } else {
+      this.setState({
+        chosenImageArray: [],
+        userScore: 0,
+        message: "Better luck next time!"
+      })
+
+      if (this.state.userScore > this.state.highScore) {
+        this.setState({
+          highScore: this.state.userScore
+        })
+      }
+    }
+
   };
+
+  shuffle = a => {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
+    }
+    return a;
+  }
 
   render() {
     return (
       <Wrapper>
-        <Header />
+        <Header 
+        userScore={this.state.userScore}
+        highScore={this.state.highScore}
+        message={this.state.message}
+        />
         <Jumbotron />
         {this.state.images.map(image => (
           <ImageCard
-            removeFriend={this.removeFriend}
+            selectImage={this.selectImage}
             id={image.id}
             key={image.id}
             name={image.name}
