@@ -8,7 +8,7 @@ const sectionStyle = {
 
 
 
-const Modal = props => <div div className="modal fade" style={(props.modal) ? { display: "block", opacity: 1 } : {}} id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+const Modal = props => <div div className="modal fade" style={(props.modal) ? { display: "block", opacity: 1 } : {}} id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div className="modal-dialog modal-dialog-centered" role="document">
     <div className="modal-content" style={sectionStyle}>
       <div className="modal-header noBorder">
