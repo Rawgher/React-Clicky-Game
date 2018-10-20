@@ -13,7 +13,7 @@ class App extends Component {
     chosenImageArray: [],
     highScore: 0,
     userScore: 0,
-    message: ""
+    message: "Click an Image to Start!"
   };
 
   selectImage = id => {
