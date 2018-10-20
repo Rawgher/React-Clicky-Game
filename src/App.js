@@ -6,6 +6,7 @@ import ImageCard from "./components/ImageCard";
 import Wrapper from "./components/Wrapper"
 import images from "./images.json"
 import BackgroundArea from "./components/BackgroundArea"
+import Modal from "./components/Modal"
 import './App.css';
 
 class App extends Component {
@@ -14,7 +15,10 @@ class App extends Component {
     chosenImageArray: [],
     highScore: 0,
     userScore: 0,
-    message: "Click an Image to Start!"
+    message: "Click an Image to Start!",
+    modal: false,
+    gif: "",
+    imgName: ""
   };
 
   selectImage = id => {
@@ -30,11 +34,31 @@ class App extends Component {
         userScore: this.state.userScore + 1,
         message: "Good choice!"
       })
+
+      if(this.state.userScore >= this.state.highScore) {
+        this.setState({ highScore: this.state.userScore + 1 })
+      }
+
+      if (this.state.chosenImageArray.length === this.state.images.length ) {
+        this.setState({
+          chosenImageArray: [],
+          modal: true,
+          highScore: 0,
+          userScore: 0,
+          message: "You won! Spiddy's proud of you!",
+          gif: "./images/happySpiddy.gif",
+          imgName: "Happy Spiddy"
+        })
+      }
+
     } else {
       this.setState({
         chosenImageArray: [],
         userScore: 0,
-        message: "Better luck next time!"
+        message: "Better luck next time!",
+        modal: true,
+        gif: "./images/sadSpiddy.gif",
+        imgName: "Sad Spiddy"
       })
 
       if (this.state.userScore > this.state.highScore) {
@@ -57,6 +81,12 @@ class App extends Component {
     return a;
   }
 
+  closeModal = () => {
+    this.setState({
+      modal: false
+    })
+  }
+
   render() {
     return (
       <Wrapper>
@@ -76,6 +106,12 @@ class App extends Component {
             image={image.image}
           />
         ))}
+        <Modal 
+        modal={this.state.modal}
+        closeModal={this.closeModal}
+        message={this.state.message}
+        gif={this.state.gif}
+        imgName={this.state.imgName} />
         </BackgroundArea>
         <Footer />
       </Wrapper>
