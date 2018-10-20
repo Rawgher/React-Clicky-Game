@@ -5,6 +5,7 @@ import Jumbotron from "./components/Jumbotron";
 import ImageCard from "./components/ImageCard";
 import Wrapper from "./components/Wrapper"
 import images from "./images.json"
+import BackgroundArea from "./components/BackgroundArea"
 import './App.css';
 
 class App extends Component {
@@ -65,6 +66,7 @@ class App extends Component {
         message={this.state.message}
         />
         <Jumbotron />
+        <BackgroundArea>
         {this.state.images.map(image => (
           <ImageCard
             selectImage={this.selectImage}
@@ -74,6 +76,7 @@ class App extends Component {
             image={image.image}
           />
         ))}
+        </BackgroundArea>
         <Footer />
       </Wrapper>
     );
